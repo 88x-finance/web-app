@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  body > [data-rk='root'] {
+    @apply isolate flex h-full min-h-full flex-1 flex-col pb-72 md:pb-12;
+  }
+
+  .spinner {
+    --border-width: 2px;
+    --spinner-color: 255 255 255;
+
+    @apply h-16 w-16 animate-spin rounded-full;
+
+    mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - var(--border-width)),
+      #000 calc(100% - var(--border-width))
+    );
+
+    background: linear-gradient(
+          to top,
+          rgb(var(--spinner-color) / 1),
+          rgb(var(--spinner-color) / 0.5)
+        )
+        100% 0/50% 100% no-repeat,
+      linear-gradient(rgb(var(--spinner-color) / 0.5) 50%, transparent 100%) 0 0/50% 100% no-repeat;
+  }
+
+  .spinner-dark {
+    --spinner-color: 0 0 0;
+  }
+
+  /* TODO: Move somewhere else? */
+  .progress-line-mask {
+    --size: calc(theme(spacing.36) / 2);
+    mask-image: linear-gradient(
+      90deg,
+      theme(colors.white / 1) 0%,
+      theme(colors.white / 1) calc(50% - var(--size)),
+      theme(colors.white / 0) calc(50% - var(--size)),
+      theme(colors.white / 0) calc(50% + var(--size)),
+      theme(colors.white / 1) calc(50% + var(--size)),
+      theme(colors.white / 1) 100%
+    );
+  }
+}

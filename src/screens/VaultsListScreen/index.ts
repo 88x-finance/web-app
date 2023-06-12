@@ -1,0 +1,1 @@
+export { VaultsListScreen } from './VaultsListScreen';
